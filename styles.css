@@ -1,0 +1,334 @@
+/*
+  styles.css - Modern TODO List의 메인 스타일 파일
+  모든 주요 CSS 선언, 변수, 미디어쿼리, 클래스에 구체적인 주석 추가
+*/
+:root {
+    /* 라이트 모드용 CSS 변수 선언 (색상, 그림자, 폰트 등) */
+    --primary-color: #6a0572; /* 메인 색상 (진한 보라) */
+    --secondary-color: #2c3e50; /* 서브 색상 (남색) */
+    --text-color: #333; /* 기본 텍스트 색상 */
+    --bg-color: #f4f7f6; /* 배경 색상 */
+    --card-bg: #ffffff; /* 카드 배경 색상 */
+    --border-color: #e0e0e0; /* 테두리 색상 */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* 연한 그림자 */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* 중간 그림자 */
+    --button-hover-bg: #8e24aa; /* 버튼 호버 색상 */
+    --input-border: #ccc; /* 입력창 테두리 색상 */
+    --task-completed-bg: #f0f0f0; /* 완료된 할 일 배경 */
+    --task-completed-text: #888; /* 완료된 할 일 텍스트 */
+}
+
+body.dark-mode {
+    /* 다크 모드일 때의 CSS 변수 재정의 */
+    --primary-color: #bb86fc; /* 다크 모드용 밝은 보라 */
+    --secondary-color: #03dac6; /* 다크 모드용 청록 */
+    --text-color: #e0e0e0; /* 다크 모드 텍스트 */
+    --bg-color: #121212; /* 다크 모드 배경 */
+    --card-bg: #1e1e1e; /* 다크 모드 카드 배경 */
+    --border-color: #333333; /* 다크 모드 테두리 */
+    --shadow-light: rgba(0, 0, 0, 0.3); /* 다크 모드 연한 그림자 */
+    --shadow-medium: rgba(0, 0, 0, 0.5); /* 다크 모드 중간 그림자 */
+    --button-hover-bg: #9c27b0; /* 다크 모드 버튼 호버 */
+    --input-border: #555; /* 다크 모드 입력창 테두리 */
+    --task-completed-bg: #2a2a2a; /* 다크 모드 완료 배경 */
+    --task-completed-text: #a0a0a0; /* 다크 모드 완료 텍스트 */
+}
+
+* {
+    box-sizing: border-box; /* 모든 요소의 box-sizing을 border-box로 설정 */
+    margin: 0; /* 기본 마진 제거 */
+    padding: 0; /* 기본 패딩 제거 */
+}
+
+body {
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif; /* 폰트 지정 */
+    background-color: var(--bg-color); /* 배경색 적용 */
+    color: var(--text-color); /* 텍스트 색상 적용 */
+    display: flex; /* 플렉스 박스 사용 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: flex-start; /* 수직 상단 정렬 */
+    min-height: 100vh; /* 최소 높이 100vh */
+    padding: 20px; /* 바깥 여백 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 색상 전환 효과 */
+}
+
+.container {
+    width: 100%; /* 전체 너비 */
+    max-width: 800px; /* 최대 너비 */
+    background-color: var(--card-bg); /* 카드 배경색 */
+    border-radius: 12px; /* 모서리 둥글게 */
+    box-shadow: 0 10px 30px var(--shadow-medium); /* 그림자 효과 */
+    padding: 30px; /* 내부 여백 */
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+header {
+    display: flex; /* 플렉스 박스 */
+    justify-content: space-between; /* 양쪽 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-bottom: 30px; /* 아래 여백 */
+    border-bottom: 1px solid var(--border-color); /* 하단 테두리 */
+    padding-bottom: 20px; /* 하단 패딩 */
+}
+
+header h1 {
+    font-size: 2.2em; /* 제목 크기 */
+    color: var(--primary-color); /* 제목 색상 */
+    font-weight: 700; /* 굵은 글씨 */
+}
+
+.theme-switch {
+    background: none; /* 배경 없음 */
+    border: none; /* 테두리 없음 */
+    font-size: 1.5em; /* 아이콘 크기 */
+    cursor: pointer; /* 커서 변경 */
+    color: var(--text-color); /* 아이콘 색상 */
+    transition: color 0.3s ease; /* 색상 전환 효과 */
+}
+
+.theme-switch:hover {
+    color: var(--primary-color); /* 호버 시 색상 변경 */
+}
+
+.tab-container {
+    display: flex; /* 플렉스 박스 */
+    justify-content: center; /* 중앙 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.tab-button {
+    background-color: var(--card-bg); /* 배경색 */
+    border: 1px solid var(--border-color); /* 테두리 */
+    padding: 10px 20px; /* 내부 여백 */
+    cursor: pointer; /* 커서 변경 */
+    font-size: 1em; /* 글자 크기 */
+    font-weight: 600; /* 굵은 글씨 */
+    color: var(--text-color); /* 글자 색상 */
+    transition: all 0.3s ease; /* 전환 효과 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin: 0 5px; /* 좌우 여백 */
+}
+
+.tab-button.active {
+    background-color: var(--primary-color); /* 활성 탭 배경 */
+    color: white; /* 활성 탭 글자색 */
+    border-color: var(--primary-color); /* 활성 탭 테두리 */
+    box-shadow: 0 4px 10px var(--shadow-light); /* 그림자 */
+}
+
+.tab-button:not(.active):hover {
+    background-color: var(--bg-color); /* 비활성 탭 호버 배경 */
+}
+
+.task-input-section {
+    display: flex; /* 플렉스 박스 */
+    gap: 15px; /* 요소 간 간격 */
+    margin-bottom: 30px; /* 아래 여백 */
+    flex-wrap: wrap; /* 작은 화면에서 줄바꿈 허용 */
+}
+
+.task-input-section input[type="text"],
+.task-input-section select {
+    flex: 1; /* 동일한 비율로 너비 분배 */
+    padding: 12px 15px; /* 내부 여백 */
+    border: 1px solid var(--input-border); /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    font-size: 1em; /* 글자 크기 */
+    color: var(--text-color); /* 글자 색상 */
+    background-color: var(--bg-color); /* 배경색 */
+    transition: all 0.3s ease; /* 전환 효과 */
+    min-width: 150px; /* 최소 너비 */
+}
+
+.task-input-section input[type="text"]::placeholder {
+    color: var(--text-color); /* 플레이스홀더 색상 */
+    opacity: 0.7; /* 투명도 */
+}
+
+.task-input-section input[type="text"]:focus,
+.task-input-section select:focus {
+    outline: none; /* 포커스 시 외곽선 제거 */
+    border-color: var(--primary-color); /* 포커스 시 테두리 색상 */
+    box-shadow: 0 0 0 3px rgba(106, 5, 114, 0.2); /* 포커스 시 그림자 */
+}
+
+.add-task-btn {
+    background-color: var(--primary-color); /* 버튼 배경 */
+    color: white; /* 버튼 글자색 */
+    border: none; /* 테두리 없음 */
+    padding: 12px 25px; /* 내부 여백 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    cursor: pointer; /* 커서 변경 */
+    font-size: 1em; /* 글자 크기 */
+    font-weight: 600; /* 굵은 글씨 */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 전환 효과 */
+}
+
+.add-task-btn:hover {
+    background-color: var(--button-hover-bg); /* 호버 시 배경 */
+    transform: translateY(-2px); /* 살짝 위로 이동 */
+}
+
+.task-list {
+    list-style: none; /* 리스트 마커 제거 */
+    padding: 0; /* 패딩 제거 */
+}
+
+.task-item {
+    display: flex; /* 플렉스 박스 */
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between; /* 양쪽 정렬 */
+    background-color: var(--card-bg); /* 배경색 */
+    border: 1px solid var(--border-color); /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    margin-bottom: 15px; /* 아래 여백 */
+    padding: 15px 20px; /* 내부 여백 */
+    box-shadow: 0 2px 8px var(--shadow-light); /* 그림자 */
+    transition: all 0.3s ease; /* 전환 효과 */
+}
+
+.task-item:last-child {
+    margin-bottom: 0; /* 마지막 아이템은 아래 여백 없음 */
+}
+
+.task-item.completed {
+    background-color: var(--task-completed-bg); /* 완료 시 배경 */
+    text-decoration: line-through; /* 취소선 */
+    color: var(--task-completed-text); /* 완료 시 텍스트 색상 */
+    opacity: 0.8; /* 투명도 */
+}
+
+.task-item .task-content {
+    flex-grow: 1; /* 남은 공간 차지 */
+    display: flex; /* 플렉스 박스 */
+    flex-direction: column; /* 세로 정렬 */
+    margin-right: 15px; /* 오른쪽 여백 */
+}
+
+.task-item .task-name {
+    font-size: 1.1em; /* 글자 크기 */
+    font-weight: 600; /* 굵은 글씨 */
+    word-break: break-word; /* 줄바꿈 허용 */
+}
+
+.task-item .task-details {
+    font-size: 0.85em; /* 작은 글씨 */
+    color: var(--text-color); /* 색상 */
+    opacity: 0.7; /* 투명도 */
+    margin-top: 5px; /* 위 여백 */
+}
+
+.task-item .task-actions {
+    display: flex; /* 플렉스 박스 */
+    gap: 10px; /* 버튼 간 간격 */
+}
+
+.task-item .task-actions button {
+    background: none; /* 배경 없음 */
+    border: none; /* 테두리 없음 */
+    font-size: 1.2em; /* 아이콘 크기 */
+    cursor: pointer; /* 커서 변경 */
+    color: var(--text-color); /* 아이콘 색상 */
+    transition: color 0.3s ease, transform 0.2s ease; /* 전환 효과 */
+}
+
+.task-item .task-actions button.complete-btn {
+    color: var(--primary-color); /* 완료 버튼 색상 */
+}
+
+.task-item .task-actions button.delete-btn {
+    color: #e74c3c; /* 삭제 버튼 색상 (빨강) */
+}
+
+.task-item .task-actions button:hover {
+    transform: scale(1.1); /* 호버 시 확대 */
+}
+
+.task-item .task-actions button.complete-btn:hover {
+    color: var(--button-hover-bg); /* 완료 버튼 호버 색상 */
+}
+
+.task-item .task-actions button.delete-btn:hover {
+    color: #c0392b; /* 삭제 버튼 호버 색상 */
+}
+
+.filters {
+    display: flex; /* 플렉스 박스 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+    gap: 10px; /* 필터 간 간격 */
+}
+
+.filters select {
+    padding: 8px 12px; /* 내부 여백 */
+    border: 1px solid var(--input-border); /* 테두리 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    background-color: var(--bg-color); /* 배경색 */
+    color: var(--text-color); /* 글자 색상 */
+    font-size: 0.9em; /* 글자 크기 */
+}
+
+/* 반응형 디자인 (600px 이하) */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* 패딩 축소 */
+    }
+
+    header {
+        flex-direction: column; /* 세로 정렬 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        margin-bottom: 20px; /* 아래 여백 축소 */
+    }
+
+    header h1 {
+        margin-bottom: 10px; /* 아래 여백 */
+        font-size: 1.8em; /* 제목 크기 축소 */
+    }
+
+    .tab-container {
+        flex-wrap: wrap; /* 줄바꿈 허용 */
+        margin-bottom: 15px; /* 아래 여백 축소 */
+    }
+
+    .tab-button {
+        flex: 1 1 auto; /* 버튼이 줄바꿈되며 너비 조정 */
+        margin: 5px; /* 여백 */
+        text-align: center; /* 가운데 정렬 */
+    }
+
+    .task-input-section {
+        flex-direction: column; /* 세로 정렬 */
+    }
+
+    .task-input-section input[type="text"],
+    .task-input-section select,
+    .add-task-btn {
+        width: 100%; /* 전체 너비 */
+    }
+
+    .task-item {
+        flex-direction: column; /* 세로 정렬 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+        padding: 15px; /* 패딩 축소 */
+    }
+
+    .task-item .task-content {
+        margin-right: 0; /* 오른쪽 여백 제거 */
+        margin-bottom: 10px; /* 아래 여백 추가 */
+    }
+
+    .task-item .task-actions {
+        width: 100%; /* 전체 너비 */
+        justify-content: flex-end; /* 오른쪽 정렬 */
+    }
+
+    .filters {
+        flex-direction: column; /* 세로 정렬 */
+        align-items: flex-end; /* 오른쪽 정렬 */
+    }
+
+    .filters select {
+        width: 100%; /* 전체 너비 */
+        margin-bottom: 10px; /* 아래 여백 */
+    }
+}

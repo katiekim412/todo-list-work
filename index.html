@@ -1,0 +1,65 @@
+<!--
+  index.html - Modern TODO List의 메인 HTML 파일
+  모든 주요 태그와 속성에 구체적인 주석 추가
+-->
+<!DOCTYPE html> <!-- HTML5 문서 선언 -->
+<html lang="ko"> <!-- 문서 언어: 한국어 -->
+<head>
+    <meta charset="UTF-8"> <!-- 문자 인코딩: UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 반응형 뷰포트 설정 -->
+    <title>Modern TODO List</title> <!-- 브라우저 탭 제목 -->
+    <!-- 구글 폰트: Noto Sans KR, Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome 아이콘 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container"> <!-- 전체 앱 컨테이너 -->
+        <header> <!-- 상단 헤더 영역 -->
+            <h1><i class="fas fa-clipboard-list"></i> Modern TODO List</h1> <!-- 앱 제목 및 아이콘 -->
+            <button id="theme-toggle" class="theme-switch"> <!-- 다크/라이트 모드 토글 버튼 -->
+                <i class="fas fa-moon"></i> <!-- 기본: 달 아이콘 -->
+            </button>
+        </header>
+
+        <div class="tab-container"> <!-- 개인/팀 탭 버튼 영역 -->
+            <button class="tab-button active" data-tab="personal">개인 TODO</button> <!-- 개인 탭(기본 활성) -->
+            <button class="tab-button" data-tab="team">팀 TODO</button> <!-- 팀 탭 -->
+        </div>
+
+        <section class="task-input-section"> <!-- 할 일 입력 영역 -->
+            <input type="text" id="task-text" placeholder="새로운 할 일 추가..."> <!-- 할 일 입력창 -->
+            <input type="text" id="task-assigned-to" placeholder="담당자 (선택 사항)"> <!-- 담당자 입력창 -->
+            <select id="task-priority"> <!-- 우선순위 선택 -->
+                <option value="low">낮음</option>
+                <option value="medium" selected>보통</option>
+                <option value="high">높음</option>
+            </select>
+            <button class="add-task-btn" id="add-task-btn"><i class="fas fa-plus-circle"></i> 할 일 추가</button> <!-- 할 일 추가 버튼 -->
+        </section>
+
+        <section class="filters"> <!-- 필터 영역 -->
+            <select id="filter-status"> <!-- 상태 필터 -->
+                <option value="all">모두</option>
+                <option value="active">진행 중</option>
+                <option value="completed">완료</option>
+            </select>
+            <select id="filter-priority"> <!-- 우선순위 필터 -->
+                <option value="all">모든 우선순위</option>
+                <option value="low">낮음</option>
+                <option value="medium">보통</option>
+                <option value="high">높음</option>
+            </select>
+        </section>
+
+        <section class="task-list-section"> <!-- 할 일 목록 영역 -->
+            <ul id="task-list" class="task-list"> <!-- 동적으로 할 일 항목이 추가되는 리스트 -->
+                </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script> <!-- 외부 JS 파일 연결 -->
+</body>
+</html>
