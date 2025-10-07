@@ -73,5 +73,5 @@
 
 ### 👤 Author
 - **이름**: 김태영
-- **역할**: 클라우드 엔지니어 & 프론트엔드 학습자
+- **역할**: 클라우드 / 인프라 엔지니어 (Cloud & Infrastructure Engineer)
 - **Contact**: katiekim412@gmail.com | http://www.linkedin.com/in/katiekim412
